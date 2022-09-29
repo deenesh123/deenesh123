@@ -1,0 +1,34 @@
+Say that you have 5 stores and 5 recipes. Assume that all stores are at the same distance from you
+(travel cost and time are the same to go to multiple stores too). Each recipe has different ingredients.
+Each store has coupons for different ingredients with their own discount amount. 
+Write code that will display the set of stores that would cost minimum for a recipe.
+
+
+
+CODE:
+
+struct Store : Comparable, Identifiable {
+    var recipie : String
+    var cost = (100..<500).randomElement() ?? 0
+    var discountPercent = (0..<30).randomElement() ?? 0
+    var customerCost : Int?
+}
+
+
+var A = Store(recipie: "r1")
+var B = Store(recipie: "r2")
+
+
+A.customerCost = Int(A.cost) - Int((Int(A.discountPercent)*Int(A.cost))/100)
+B.customerCost = Int(B.cost) - Int((Int(B.discountPercent)*Int(B.cost))/100)
+
+var x = A.customerCost
+var y = B.customerCost
+
+
+if x > y {
+  print("A will cost minimum.")
+}
+else{
+  print("B will cost minimum")
+}
